@@ -1,6 +1,10 @@
-import React from 'react';
+import { useContext } from "react";
+import FormContext from "../../context/FormContext";
 
-const FormNav = ({ formStep, handleBack }) => {
+
+const FormNav = () => {
+    const {formStep, handleBack} = useContext(FormContext);
+    
     return (
         <div className="flex flex-col gap-3 bg-gray-500 px-16 pb-7 pt-3 mb-[-15px] rounded-t-2xl">
             <h2 className="text-3xl font-bold dark:text-white">Registration</h2>

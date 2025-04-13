@@ -1,4 +1,9 @@
-const StepTwo = ({ formData, setFormData, handleNext }) => {
+import { useContext } from 'react';
+import FormContext from '../../context/FormContext';
+
+const StepTwo = () => {
+    const { formData, updateField, handleNext } = useContext(FormContext);
+
     return (
         <form className="flex flex-col items-center gap-2 bg-gray-300 dark:bg-gray-800 border-gray-400 rounded-4xl px-16 py-10 shadow-lg">
             <label
@@ -12,7 +17,7 @@ const StepTwo = ({ formData, setFormData, handleNext }) => {
                 placeholder="John"
                 id="firstName"
                 className="bg-gray-200 dark:bg-gray-700 placeholder-gray-500 rounded-2xl p-2"
-                onChange={(e) => setFormData(fd => ({...fd, firstName: e.target.value}))}
+                onChange={(e) => updateField('firstName', e.target.value)}
                 value={formData.firstName}
             />
             <label
@@ -26,7 +31,7 @@ const StepTwo = ({ formData, setFormData, handleNext }) => {
                 placeholder="Doe"
                 id="lastName"
                 className="bg-gray-200 dark:bg-gray-700 placeholder-gray-500 rounded-2xl p-2"
-                onChange={(e) => setFormData(fd => ({...fd, lastName: e.target.value}))}
+                onChange={(e) => updateField('lastName', e.target.value)}
                 value={formData.lastName}
             />
             <label
@@ -40,7 +45,7 @@ const StepTwo = ({ formData, setFormData, handleNext }) => {
                 placeholder="Street 82"
                 id="address"
                 className="bg-gray-200 dark:bg-gray-700 placeholder-gray-500 rounded-2xl p-2"
-                onChange={(e) => setFormData(fd => ({...fd, address: e.target.value}))}
+                onChange={(e) => updateField('address', e.target.value)}
                 value={formData.address}
             />
             <button

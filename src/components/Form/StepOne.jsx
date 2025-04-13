@@ -1,4 +1,8 @@
-const StepOne = ({ formData, setFormData, handleNext }) => {
+import { useContext } from 'react';
+import FormContext from '../../context/FormContext';
+
+const StepOne = () => {
+    const { formData, updateField, handleNext } = useContext(FormContext);
     return (
         <form className="flex flex-col items-center gap-2 bg-gray-300 dark:bg-gray-800 border-gray-400 rounded-4xl px-16 py-10 shadow-lg">
             <label
@@ -12,7 +16,7 @@ const StepOne = ({ formData, setFormData, handleNext }) => {
                 placeholder="example@domain.com"
                 id="email"
                 className="bg-gray-200 dark:bg-gray-700 placeholder-gray-500 rounded-2xl p-2"
-                onChange={(e) => setFormData(fd => ({...fd, email: e.target.value}))}
+                onChange={(e) => updateField('email', e.target.value)}
                 value={formData.email}
             />
             <label
@@ -26,7 +30,7 @@ const StepOne = ({ formData, setFormData, handleNext }) => {
                 placeholder="********"
                 id="password"
                 className="bg-gray-200 dark:bg-gray-700 placeholder-gray-500 rounded-2xl p-2"
-                onChange={(e) => setFormData(fd => ({...fd, password: e.target.value}))}
+                onChange={(e) => updateField('password', e.target.value)}
                 value={formData.password}
             />
             <button
