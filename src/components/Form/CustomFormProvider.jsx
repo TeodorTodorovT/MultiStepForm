@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import FormContext from '../../context/FormContext';
+import CustomFormContext from '../../context/CustomFormContext';
 
-const FormProvider = ({ children }) => {
+const CustomFormProvider = ({ children }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -31,7 +31,7 @@ const FormProvider = ({ children }) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
 
     return (
-        <FormContext.Provider
+        <CustomFormContext.Provider
             value={{
                 formData,
                 setFormData,
@@ -42,8 +42,8 @@ const FormProvider = ({ children }) => {
             }}
         >
             {children}
-        </FormContext.Provider>
+        </CustomFormContext.Provider>
     );
 };
 
-export default FormProvider;
+export default CustomFormProvider;
