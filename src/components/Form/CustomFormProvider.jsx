@@ -18,12 +18,15 @@ const CustomFormProvider = ({ children }) => {
         }
     };
 
-    const handleNext = () => {
+    const handleNext = async () => {
+        
         if (formStep < 3) {
             setFormStep((s) => s + 1);
         }
         if (formStep === 3) {
-            console.log('You Registered!');
+            await new Promise((resolve) => setTimeout(resolve, 2000));
+            alert("Form submitted successfully!");
+
         }
     };
 

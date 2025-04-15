@@ -3,42 +3,81 @@ import StepOne from './StepOne';
 import FormNav from './FormNav';
 import StepTwo from './StepTwo';
 import StepThree from './StepThree';
-import CustomFormProvider from './CustomFormProvider';
 import FormContext from '../../context/CustomFormContext';
 import { FormProvider, useForm, useFormContext } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 const MultiFormContent = () => {
     const { formStep, handleNext } = useContext(FormContext);
-    const { handleSubmit } = useFormContext();
+    const { handleSubmit, formState } = useFormContext();
+    
     return (
-        <div className="flex justify-center items-center flex-col h-[calc(100vh-104px)]">
+        <div className="flex justify-center items-center flex-col min-h-[calc(100vh-64px)]">
             <FormNav />
             <form
                 onSubmit={handleSubmit(handleNext)}
-                className="flex flex-col items-center gap-2 bg-gray-300 dark:bg-gray-800 border-gray-400 rounded-4xl px-16 py-10 shadow-lg"
+                className="w-full max-w-2xl bg-white dark:bg-gray-800 rounded-b-2xl shadow-lg p-8"
             >
-                {formStep === 1 && <StepOne />}
-                {formStep === 2 && <StepTwo />}
-                {formStep === 3 && <StepThree />}
-                <button
-                    type="submit"
-                    className="px-6 py-3 mt-6 bg-gray-900 rounded-3xl font-semibold cursor-pointer hover:bg-gray-700 text-white"
-                >
-                    {formStep === 3 ? 'Submit' : 'Next'}
-                </button>
+                <div className="space-y-6">
+                    <div className="transition-all duration-300 ease-in-out">
+                        {formStep === 1 && <StepOne />}
+                        {formStep === 2 && <StepTwo />}
+                        {formStep === 3 && <StepThree />}
+                    </div>
+                    <div className="flex justify-end pt-4">
+                        <button
+                            type="submit"
+                            className={`
+                                px-8 py-3 rounded-xl font-semibold text-white
+                                transition-all duration-300 ease-in-out
+                                ${formState.isValid
+                                    ? 'bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800'
+                                    : 'bg-gray-400 dark:bg-gray-600 cursor-not-allowed'
+                                }
+                                focus:outline-none
+                            `}
+                            disabled={!formState.isValid}
+                            aria-label={formStep === 3 ? 'Submit form' : 'Next step'}
+                        >
+                            {formStep === 3 ? 'Submit' : 'Next'}
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     );
 };
 
+const stepSchemas = [
+    yup.object({
+        email: yup
+            .string()
+            .required('Email is required')
+            .email('Invalid email'),
+        password: yup
+            .string()
+            .required('Password is required')
+            .min(8, 'Password must be at least 8 characters'),
+    }),
+    yup.object({
+        firstName: yup.string().required('First Name is required'),
+        lastName: yup.string().required('Last Name is required'),
+        address: yup.string().required('Address is required'),
+    }),
+    yup.object(),
+];
+
 const MultiForm = () => {
-    const methods = useForm();
+    const { formStep } = useContext(FormContext);
+    const methods = useForm({
+        resolver: yupResolver(stepSchemas[formStep - 1]),
+        mode: 'onTouched'
+    });
     return (
-        <CustomFormProvider>
-            <FormProvider {...methods}>
-                <MultiFormContent />
-            </FormProvider>
-        </CustomFormProvider>
+        <FormProvider {...methods}>
+            <MultiFormContent />
+        </FormProvider>
     );
 };
 

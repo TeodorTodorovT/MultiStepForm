@@ -4,21 +4,30 @@ import ThemeContext from '../context/ThemeContext';
 const Header = () => {
     const { theme, setTheme } = useContext(ThemeContext);
 
-    const toggleTheme = () => {
+    const handleThemeToggle = () => {
         setTheme(t => t === 'light' ? 'dark' : 'light');
     };
 
+
     return (
-        <div className="flex justify-around p-6 bg-gray-400 dark:bg-gray-800">
-            <h1 className="font-black text-gray-800 dark:text-gray-500 text-4xl">MultiForm</h1>
-            <button
-                className="text-2xl p-3 rounded-full cursor-pointer hover:bg-[rgba(255,255,255,0.3)]"
-                onClick={toggleTheme}
-                type='button'
-            >
-                {theme === 'light' ? '🌙' : '☀️'}
-            </button>
-        </div>
+        <header className="sticky top-0 z-50 backdrop-blur-sm bg-white/80 dark:bg-gray-900/80 shadow-sm">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex justify-between items-center h-16">
+                    <h1 className="font-black text-3xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent transition-all duration-300 hover:scale-105 cursor-pointer">
+                        MultiForm
+                    </h1>
+                    <button
+                        className="p-2 rounded-full transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:focus:ring-offset-gray-900"
+                        onClick={handleThemeToggle}
+                        aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+                    >
+                        <span className="text-2xl transform transition-transform duration-300 hover:rotate-12">
+                            {theme === 'light' ? '🌙' : '☀️'}
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </header>
     );
 };
 
