@@ -17,7 +17,7 @@ const Header = () => {
                         MultiForm
                     </h1>
                     <button
-                        className="p-2 rounded-full transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:focus:ring-offset-gray-900"
+                        className="p-2 rounded-full transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:focus:ring-offset-gray-900 cursor-pointer"
                         onClick={handleThemeToggle}
                         aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
                     >

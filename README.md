@@ -1,12 +1,52 @@
-# React + Vite
+# **Multi-Step Form**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and user-friendly multi-step registration form built with React and TailwindCSS. This application guides users through a three-step registration process with form validation and a clean, responsive UI.
 
-Currently, two official plugins are available:
+## **Live Demo**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Multi-Step Form](https://multi-step-form-val.vercel.app/)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## **Running Locally**
+
+If you want to run the project on your local machine, follow these steps:
+
+### **1. Clone the Repository**
+
+```bash
+git clone https://github.com/TeodorTodorovT/MultiStepForm.git
+cd MultiStepForm
+```
+
+### **2. Install Dependencies**
+
+```bash
+npm install
+```
+
+### **3. Start the Development Server**
+
+```bash
+npm run dev
+```
+
+This will start the app on `http://localhost:5173` (or another available port).
+
+---
+
+## **Features**
+
+* **Multi-Step Form**: Three-step registration process (Email/Password, Personal Info, Review)
+* **Form Validation**: Real-time validation using Yup and React Hook Form
+* **Responsive Design**: Works seamlessly on desktop and mobile devices
+* **Dark Mode**: Toggle between light and dark themes
+* **Modern UI**: Clean and intuitive interface with smooth transitions
+
+## **Technologies Used**
+
+* React
+* TailwindCSS
+* React Hook Form
+* Yup (for schemas)
+* Context API (for state management)

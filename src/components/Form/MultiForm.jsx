@@ -36,6 +36,7 @@ const MultiFormContent = () => {
                                     : 'bg-gray-400 dark:bg-gray-600 cursor-not-allowed'
                                 }
                                 focus:outline-none
+                                cursor-pointer
                             `}
                             disabled={!formState.isValid}
                             aria-label={formStep === 3 ? 'Submit form' : 'Next step'}

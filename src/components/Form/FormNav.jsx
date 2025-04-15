@@ -39,6 +39,7 @@ const FormNav = () => {
                                 text-white font-medium
                                 transition-all duration-300
                                 focus:outline-none focus:ring-2 focus:ring-white/50
+                                cursor-pointer
                             "
                             onClick={handleBack}
                             aria-label="Go back to previous step"
